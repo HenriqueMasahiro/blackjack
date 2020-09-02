@@ -1,0 +1,59 @@
+<meta charset="UTF-8">
+
+<script>
+	
+	var apostaDoUsuario = 21;
+	var minhaAposta = 0;
+	var estourou = false;
+	var parar = false;
+
+	function pedir(){
+		var carta = Math.round(Math.random()*10);
+		while (carta == 0){
+			carta = Math.round(Math.random()*10);
+		}
+		return carta;
+	}
+
+	var comando = prompt ("Você deseja PEDIR ou PARAR?");
+		
+		while (comando == "PEDIR"){
+			apostaDoUsuario = apostaDoUsuario + pedir();
+			if (apostaDoUsuario == 21){
+				alert("Blackjack! você fez 21 pontos. agora é a minha vez...");
+				break;
+			}
+			if (apostaDoUsuario > 21){
+				alert("Você estourou! pediu demais e fez " + apostaDoUsuario + " pontos.");
+				estourou = true;
+				break;
+			}
+			var comando = prompt ("Você deseja PEDIR ou PARAR? Sua pontuação atual é de " + apostaDoUsuario + " pontos." );
+		}
+
+		if (comando == "PARAR"){		
+			alert("Sua pontuação final é de " + apostaDoUsuario + " pontos.");
+		}	
+
+		if(estourou == false){
+			while (minhaAposta <= apostaDoUsuario){
+				minhaAposta = minhaAposta + pedir();
+				if(minhaAposta == 21){
+					alert("Blackjack!! fiz 21 pontos! então você perdeu!");
+					parar = true;
+					break;
+				}
+				if(minhaAposta > 21){
+					alert("Perdi! exagerei e fiz " + minhaAposta + " pontos.");
+					parar = true;
+				}
+				if (parar == false){
+					alert("Até agora fiz " + minhaAposta + " pontos. Enquanto você fez " + apostaDoUsuario +" pontos.");
+				}
+			}
+			if (parar == false){
+			alert ("Você perdeu! fiz " + minhaAposta + " pontos. Enquanto você fez " + apostaDoUsuario + ".");			
+			}
+		}
+
+</script>
